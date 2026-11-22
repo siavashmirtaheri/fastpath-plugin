@@ -3,6 +3,23 @@
 Context-diet plugin for Hermes Agent. It compresses oversized tool results
 before they enter the model context, reducing token use, latency and cost.
 
+## Install
+
+1. Download `fastpath-plugin-1.0.0.zip` from the v1.0.0 release and extract it.
+2. Copy the `fastpath` folder into `<HERMES_HOME>/plugins/`
+   (for example `~/.hermes/plugins/fastpath/`).
+3. Add `fastpath` to `plugins.enabled` in `<HERMES_HOME>/config.yaml`:
+
+   ```yaml
+   plugins:
+     enabled:
+       - fastpath
+   ```
+
+4. Restart the gateway, then run `/fastpath` to confirm the plugin is active.
+
+Requires Hermes >= 0.23.
+
 ## What it does
 
 - Registers `transform_tool_result`: any string tool result longer than the

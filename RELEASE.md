@@ -7,11 +7,23 @@ License: MIT
 Requires Hermes >= 0.23
 
 ## Install
-Copy the `fastpath` folder into `<HERMES_HOME>/plugins/` and add `fastpath` to `plugins.enabled` in config.yaml, then restart the gateway.
+
+1. Download `fastpath-plugin-1.0.0.zip` and extract it.
+2. Copy the `fastpath` folder into `<HERMES_HOME>/plugins/` (e.g. `~/.hermes/plugins/fastpath/`).
+3. Add `fastpath` to `plugins.enabled` in `<HERMES_HOME>/config.yaml`:
+
+   ```yaml
+   plugins:
+     enabled:
+       - fastpath
+   ```
+
+4. Restart the gateway, then run `/fastpath` to confirm the plugin is active.
 
 ## Commands
+
 /fastpath | /fastpath on|off | /fastpath limit N | /fastpath reset
 
 ## Artifact
 fastpath-plugin-1.0.0.zip
-SHA256: acbdfca8dad395e839f8714124bb3df39183ed4a651626e78cfd4f3b3872c355
+SHA256: 4b0341efcb89793e8e62e8cb6632602690d986d0a556d2d1d03b8bb3a88172d6
