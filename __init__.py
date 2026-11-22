@@ -17,6 +17,7 @@ Command:
 
 from __future__ import annotations
 
+import json
 import logging
 from pathlib import Path
 
@@ -46,11 +47,29 @@ def _state_path() -> Path:
 
 
 def _load() -> dict:
+    """Read state, ignoring missing/corrupt files and wrong value types."""
     state = dict(DEFAULTS)
     try:
-        data = __import__("json").loads(_state_path().read_text(encoding="utf-8"))
+        data = json.loads(_state_path().read_text(encoding="utf-8"))
         if isinstance(data, dict):
-            state.update({k: v for k, v in data.items() if k in DEFAULTS})
+            for key, default in DEFAULTS.items():
+                if key not in data:
+                    continue
+                try:
+                    if isinstance(default, bool):
+                        value = data[key]
+                        if isinstance(value, str):
+                            state[key] = value.strip().lower() in {"1", "true", "yes", "on"}
+                        else:
+                            state[key] = bool(value)
+                    elif isinstance(default, int):
+                        state[key] = int(data[key])
+                    elif isinstance(default, float):
+                        state[key] = float(data[key])
+                    else:
+                        state[key] = data[key]
+                except (TypeError, ValueError):
+                    pass
     except Exception:
         pass
     return state
@@ -60,7 +79,7 @@ def _save(state: dict) -> None:
     try:
         path = _state_path()
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(__import__("json").dumps(state, indent=2), encoding="utf-8")
+        path.write_text(json.dumps(state, indent=2), encoding="utf-8")
     except Exception as exc:
         logger.warning("fastpath: could not persist state: %s", exc)
 
@@ -85,23 +104,18 @@ def register(ctx) -> None:
     logger.info("fastpath registered (enabled=%s, limit=%s)", _STATE["enabled"], _STATE["max_chars"])
 
 
-def _transform_tool_result(**kwargs):
-    """Replace a too-long tool result with head + tail + omission marker.
-
-    Hermes reads the returned string as the tool result. Returning None leaves
-    the original result untouched. Nothing is written to disk except counters.
-    """
+def _compress(result):
+    """Return head + omission marker + tail for an oversized string result."""
     state = _get_state()
     if not state.get("enabled", True):
         return None
-    result = kwargs.get("result")
     if not isinstance(result, str):
         return None
     limit = int(state.get("max_chars", 12000))
     if limit < 1000 or len(result) <= limit:
         return None
 
-    head_ratio = float(state.get("head_ratio", 0.6))
+    head_ratio = min(max(float(state.get("head_ratio", 0.6)), 0.0), 1.0)
     head = int(limit * head_ratio)
     tail = limit - head
     omitted = len(result) - limit
@@ -112,7 +126,22 @@ def _transform_tool_result(**kwargs):
     state["truncations"] = int(state.get("truncations", 0)) + 1
     state["chars_saved"] = int(state.get("chars_saved", 0)) + omitted
     _save(state)
-    return result[:head] + marker + result[-tail:]
+    tail_part = result[-tail:] if tail else ""
+    return result[:head] + marker + tail_part
+
+
+def _transform_tool_result(**kwargs):
+    """Replace a too-long tool result with head + tail + omission marker.
+
+    Hermes reads the returned string as the tool result. Returning None leaves
+    the original result untouched. Nothing is written to disk except counters.
+    Any failure is fail-open: the original result is returned unchanged.
+    """
+    try:
+        return _compress(kwargs.get("result"))
+    except Exception as exc:  # pragma: no cover - defensive
+        logger.warning("fastpath: hook failed, leaving result unchanged: %s", exc)
+        return None
 
 
 def _pre_llm_call(**kwargs):

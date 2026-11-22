@@ -24,6 +24,14 @@ Requires Hermes >= 0.23
 
 /fastpath | /fastpath on|off | /fastpath limit N | /fastpath reset
 
+## Tests
+
+The package ships a stdlib-only functional test suite (9 tests):
+
+```bash
+python -m unittest discover -s fastpath/tests -v
+```
+
 ## Artifact
 fastpath-plugin-1.0.0.zip
-SHA256: 4b0341efcb89793e8e62e8cb6632602690d986d0a556d2d1d03b8bb3a88172d6
+SHA256: ab7cdccb0db4df1c5890fe2182c72c50389c1fa0e11358e5c30fe508516c3475

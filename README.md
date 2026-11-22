@@ -47,6 +47,19 @@ State lives at `~/.hermes/fastpath/state.json` (respects `HERMES_HOME`).
 - Errors are logged and degradation is fail-open: a broken hook leaves the
   result unchanged.
 
+## Testing
+
+The plugin has a stdlib-only functional test suite (no dependencies):
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+It covers hook registration, compression head/tail and omission marker,
+counter persistence, on/off and limit handling, corrupt state recovery,
+ratio clamping, fail-open behaviour and every `/fastpath` command. It also
+runs automatically on every push via GitHub Actions.
+
 ## Author
 
 Siavash Mirtaheri (BlackVash) — 2026. MIT license.
