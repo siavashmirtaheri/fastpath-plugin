@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600" viewBox="0 0 1200 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#111c2f"/>
+    </linearGradient>
+    <linearGradient id="path" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.15"/>
+      <stop offset="0.5" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#5eead4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="600" fill="url(#bg)"/>
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+    <path d="M0 100H1200M0 200H1200M0 300H1200M0 400H1200M0 500H1200"/>
+    <path d="M100 0V600M200 0V600M300 0V600M400 0V600M500 0V600M600 0V600M700 0V600M800 0V600M900 0V600M1000 0V600M1100 0V600"/>
+  </g>
+  <text x="70" y="105" fill="#94a3b8" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" letter-spacing="4">HERMES AGENT · PLUGIN</text>
+  <text x="70" y="225" fill="#f8fafc" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="86" font-weight="700">fastpath</text>
+  <text x="74" y="278" fill="#5eead4" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24">context diet for oversized tool results</text>
+  <path d="M80 375 C 320 300, 420 450, 620 375 S 900 300, 1120 375" fill="none" stroke="url(#path)" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="80" cy="375" r="9" fill="#22d3ee"/>
+  <circle cx="1120" cy="375" r="9" fill="#5eead4"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#94a3b8">
+    <text x="80" y="440">60% head</text>
+    <text x="980" y="440">40% tail</text>
+    <text x="80" y="520">omitted middle never enters the model context</text>
+  </g>
+  <rect x="70" y="545" width="210" height="30" rx="15" fill="#22d3ee" fill-opacity="0.12" stroke="#22d3ee" stroke-opacity="0.5"/>
+  <text x="88" y="566" fill="#67e8f9" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17">/fastpath status</text>
+</svg>

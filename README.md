@@ -3,6 +3,8 @@
 Context-diet plugin for Hermes Agent. It compresses oversized tool results
 before they enter the model context, reducing token use, latency and cost.
 
+![fastpath banner](docs/assets/banner.svg)
+
 ## Install
 
 1. Download `fastpath-plugin-1.0.0.zip` from the v1.0.0 release and extract it.
@@ -59,6 +61,17 @@ It covers hook registration, compression head/tail and omission marker,
 counter persistence, on/off and limit handling, corrupt state recovery,
 ratio clamping, fail-open behaviour and every `/fastpath` command. It also
 runs automatically on every push via GitHub Actions.
+
+## Size benchmark
+
+Run `python benchmark.py` for a reproducible table of characters kept and
+omitted at the default limit; results and interpretation are in
+[docs/benchmark.md](docs/benchmark.md). At 12,000 chars kept, an 80,000-char
+file read sends ~85% fewer characters to the model.
+
+## Screenshots
+
+![fastpath status and compression example](docs/assets/screenshot-status.svg)
 
 ## Author
 

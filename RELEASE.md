@@ -26,12 +26,17 @@ Requires Hermes >= 0.23
 
 ## Tests
 
-The package ships a stdlib-only functional test suite (9 tests):
+The package ships a stdlib-only functional test suite (12 tests) and a
+reproducible size benchmark:
 
 ```bash
 python -m unittest discover -s fastpath/tests -v
+python fastpath/benchmark.py
 ```
+
+Results: an 80,000-char tool result keeps 12,000 chars — ~85% fewer chars
+sent to the model. See `fastpath/docs/benchmark.md`.
 
 ## Artifact
 fastpath-plugin-1.0.0.zip
-SHA256: ab7cdccb0db4df1c5890fe2182c72c50389c1fa0e11358e5c30fe508516c3475
+SHA256: 181ed34c3175c82056dfb4c53a537a7715745453bc141d82d893640edb303889
