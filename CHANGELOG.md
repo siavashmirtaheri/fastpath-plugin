@@ -15,3 +15,4 @@
   fewer characters on an 80k-char tool result at the default limit.
 - Marketplace banner and status screenshot, plus ready-to-copy promo text.
 - Published to the Hermes plugin catalog and suggested to awesome-hermes-agent.
+- Sponsorship credit added: Metadigi (https://metadigi.ir).

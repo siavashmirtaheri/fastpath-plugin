@@ -75,4 +75,5 @@ file read sends ~85% fewer characters to the model.
 
 ## Author
 
-Siavash Mirtaheri (BlackVash) — 2026. MIT license.
+Siavash Mirtaheri (BlackVash) - 2026. MIT license.
+Backed by [Metadigi](https://metadigi.ir) — https://metadigi.ir

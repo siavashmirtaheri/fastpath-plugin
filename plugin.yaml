@@ -1,7 +1,7 @@
 name: fastpath
 version: "1.0.0"
 description: "Context diet for Hermes Agent — compresses oversized tool results before they enter the model context, cutting tokens, latency and cost. Includes /fastpath status|on|off|limit N|reset."
-author: Siavash Mirtaheri (BlackVash)
+author: "Siavash Mirtaheri (BlackVash) — sponsored by Metadigi (https://metadigi.ir)"
 license: MIT
 requires_hermes: ">=0.23"
 provides_hooks:

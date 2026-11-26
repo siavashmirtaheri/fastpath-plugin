@@ -3,6 +3,7 @@
 Context-diet plugin for Hermes Agent. Compresses oversized tool results before they enter the model context (head 60% + tail 40% + omission marker), reducing tokens, latency and cost.
 
 Author: Siavash Mirtaheri (BlackVash)
+Backed by Metadigi — https://metadigi.ir
 License: MIT
 Requires Hermes >= 0.23
 
@@ -39,4 +40,4 @@ sent to the model. See `fastpath/docs/benchmark.md`.
 
 ## Artifact
 fastpath-plugin-1.0.0.zip
-SHA256: 181ed34c3175c82056dfb4c53a537a7715745453bc141d82d893640edb303889
+SHA256: fb3a38f2edfd9c671cbdd79da4b23ea4033bf23e51ada5f79d26a115aff8c3a5

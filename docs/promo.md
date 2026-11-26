@@ -15,6 +15,7 @@ hermes plugins enable fastpath
 
 Repo: https://github.com/siavashmirtaheri/fastpath-plugin
 Marketplace: https://hermes-agent.nousresearch.com/marketplace/fastpath
+Backed by Metadigi: https://metadigi.ir
 
 Also published `fresh-code`, a skill that makes Hermes verify installed
 dependency versions and current docs before writing complete, tested code:
